@@ -73,7 +73,7 @@ def gen_cong_lsts(config, model_name):
 
 
 def get_multi_sys_ys(datasource):
-    with open(f"/data/shared/ICL_Kalman_Experiments/train_and_test_data/ortho_haar/{datasource}_interleaved_traces_ortho_haar_ident_C_multi_cut.pkl", "rb") as f:
+    with open(f"/data/shared/ICL_Kalman_Experiments/train_and_test_data/ortho_haar/moss_{datasource}_interleaved_traces_ortho_haar_ident_C_multi_cut.pkl", "rb") as f:
         data = pickle.load(f)
         print(f"data.keys(): {data.keys()}")
         multi_sys_ys = data["multi_sys_ys"][0]
