@@ -149,6 +149,9 @@ def compute_pseudo_pred_errs(multi_sys_ys, seg_starts_per_config, real_seg_lens_
                 sys_init_ind_dict[current_sys] = segment # add the system to the dictionary with the segment
                 sys_appear.append(current_sys) #append the system to the list of systems that have appeared
 
+                true = multi_sys_ys[conf][0, start_ind, :]
+                errs_conf[0, start_ind] = np.linalg.norm(true)**2 # the 1-after initial prediction is hard-coded to zero
+
                 for ys_ind in range(start_ind+1, end_ind): #generate the pseudo prediction for each ys_ind in the segment and compute the squared error
                     hist = multi_sys_ys[conf][0, start_ind:ys_ind, :].T
 
