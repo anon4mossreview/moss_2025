@@ -72,12 +72,12 @@ def gen_cong_lsts(config, model_name):
     return tf_avg_cong, tf_std_cong, train_exs_cong, output_dir
 
 
-def get_multi_sys_ys(datasource):
+def get_multi_sys_ys(datasource, ny=5):
     with open(f"/data/shared/ICL_Kalman_Experiments/train_and_test_data/ortho_haar/moss_{datasource}_interleaved_traces_ortho_haar_ident_C_multi_cut.pkl", "rb") as f:
         data = pickle.load(f)
         print(f"data.keys(): {data.keys()}")
         multi_sys_ys = data["multi_sys_ys"][0]
-        multi_sys_ys = np.take(multi_sys_ys, np.arange(multi_sys_ys.shape[-1] - config.ny, multi_sys_ys.shape[-1]), axis=-1) #get the true test observations
+        multi_sys_ys = np.take(multi_sys_ys, np.arange(multi_sys_ys.shape[-1] - ny, multi_sys_ys.shape[-1]), axis=-1) #get the true test observations
         
         sys_choices_per_config = data["sys_choices_per_config"][0]
         seg_starts_per_config = data["seg_starts_per_config"][0]
